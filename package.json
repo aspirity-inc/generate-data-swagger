@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "main": "lib/index.js",
-  "homepage": "https://github.com/Real001/generate-data-swagger",
+  "homepage": "https://github.com/aspirity-ru/generate-data-swagger",
   "repository": {
     "type": "git",
-    "url": "github:Real001/generate-data-swagger"
+    "url": "github:aspirity-ru/generate-data-swagger"
   },
   "scripts": {
     "prebuild": "rimraf lib",
