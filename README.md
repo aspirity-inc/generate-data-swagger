@@ -28,7 +28,7 @@ You can use two options for setting data generation parameters.
     },
   }
   ```
-   2. Setting parameters for an object
+  2. Setting parameters for an object
    ```
 	"type": "object",
 	"example": {
@@ -44,9 +44,9 @@ You can use two options for setting data generation parameters.
 import generateData from 'generate-data-swagger';
 const data = await generateData(schema, model, isParser, defaultValue);
 ```
-schema - path or object scheme swagger
-model - the name of the swagger model by which you need to generate data
-isParser - bool value  meaning whether to convert the schema to an object or not
+ - schema - path or object scheme swagger
+ - model - the name of the swagger model by which you need to generate data
+ - isParser - bool value  meaning whether to convert the schema to an object or not
 ```
 const defaultValue = [
 	{

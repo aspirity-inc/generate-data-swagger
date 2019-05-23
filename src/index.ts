@@ -77,8 +77,8 @@ export default async function generate<T>(schema: string | Swagger | Schema, mod
   return entity as T
 }
 
-async function typeGen(field: Schema | Schema[] | undefined,
-                       defaultValue?: Value[], name: string = '', example?: Example): Promise<any> {
+export async function typeGen(field: Schema | Schema[] | undefined,
+                              defaultValue?: Value[], name: string = '', example?: Example): Promise<any> {
   if (field !== undefined) {
     if (!Array.isArray(field)) {
       switch (field.type) {
@@ -88,11 +88,14 @@ async function typeGen(field: Schema | Schema[] | undefined,
           }
           if (name && name.toLowerCase() === 'id' || name.toLowerCase() === '_id') {
             return random.uuid().replace(/-/g, '')
-          } else if (field.format && example && example[name]) {
+          }
+          if (field.format && example && example[name]) {
             return stringGen(field, example[name])
-          } else if (field.format) {
+          }
+          if (field.format) {
             return stringGen(field)
-          } else if (example && example[name]) {
+          }
+          if (example && example[name]) {
             return get(faker, example[name] as string)()
           }
           return lorem.sentence()
@@ -137,7 +140,7 @@ async function typeGen(field: Schema | Schema[] | undefined,
           return entities
         }
       }
-    } else {
+    }  {
       const array = []
       for (const item of field) {
         array.push(await typeGen(item.items, defaultValue))
@@ -153,18 +156,18 @@ function numberGen(field: Schema): number {
     case 'float':
       if (field.maximum && field.minimum) {
         return Number(finance.amount(field.minimum, field.maximum))
-      } else if (field.minimum) {
+      }  if (field.minimum) {
         return Number(finance.amount(field.minimum))
-      } else if (field.maximum) {
+      }  if (field.maximum) {
         return Number(finance.amount(field.maximum))
       }
       return Number(finance.amount())
     case 'double':
       if (field.maximum && field.minimum) {
         return Number(finance.amount(field.minimum, field.maximum))
-      } else if (field.minimum) {
+      }  if (field.minimum) {
         return Number(finance.amount(field.minimum))
-      } else if (field.maximum) {
+      }  if (field.maximum) {
         return Number(finance.amount(field.maximum))
       }
       return Number(finance.amount())
@@ -176,9 +179,9 @@ function numberGen(field: Schema): number {
 function integerGen(field: Schema): number {
   if (field.maximum && field.minimum) {
     return random.number({ min: field.minimum, max: field.maximum })
-  } else if (field.minimum) {
+  }  if (field.minimum) {
     return random.number(field.minimum)
-  } else if (field.maximum) {
+  }  if (field.maximum) {
     return random.number(field.maximum)
   }
   return Number(finance.amount())
@@ -186,8 +189,9 @@ function integerGen(field: Schema): number {
 
 function stringGen(field: Schema, example?: Example): string | Date {
   let dateRandom = null
-  if (example && example.min && example.max) {
-    dateRandom = date.between(example.min as string, example.max as string)
+  if ((example && example.min && example.max) || field.example) {
+    const fieldExample = example || field.example
+    dateRandom = date.between(fieldExample.min as string, fieldExample.max as string)
   } else {
     dateRandom = date.recent()
   }
