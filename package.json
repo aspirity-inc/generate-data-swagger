@@ -1,12 +1,12 @@
 {
-  "name": "generate-data-swagger",
-  "version": "1.0.0",
+  "name": "@aspirity/generate-data-swagger",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "lib/index.js",
   "homepage": "https://github.com/aspirity-ru/generate-data-swagger",
   "repository": {
     "type": "git",
-    "url": "github:aspirity-ru/generate-data-swagger"
+    "url": "git+https://github.com/aspirity-ru/generate-data-swagger.git"
   },
   "scripts": {
     "prebuild": "rimraf lib",
@@ -37,5 +37,18 @@
     "tslint": "5.13.0",
     "tslint-config-airbnb": "5.11.1",
     "typescript": "3.3.3333"
-  }
+  },
+  "description": "Data generator based on swagger scheme",
+  "bugs": {
+    "url": "https://github.com/aspirity-ru/generate-data-swagger/issues"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "author": "Evgeniy Rorot <er@aspirity.com>",
+  "keywords": [
+    "swagger",
+    "generate-data-swagger",
+    "mock-generate-data"
+  ]
 }
