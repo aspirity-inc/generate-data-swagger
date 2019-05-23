@@ -1,6 +1,13 @@
 {
   "name": "generate-data-swagger",
   "version": "1.0.0",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "homepage": "https://github.com/Real001/generate-data-swagger",
+  "repository": {
+    "type": "git",
+    "url": "github:Real001/generate-data-swagger"
+  },
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "tsc",
